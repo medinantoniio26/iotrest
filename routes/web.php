@@ -17,3 +17,10 @@ $router->get('/', function () use ($router) {
     //return $router->app->version();
     return "Hola Mundo";
 });
+
+$router->get('users', 'Userscontroller@index');
+$router->get('users/{id}', 'Userscontroller@show');
+$router->post('users', 'Userscontroller@store'); #insertar
+$router->put('users/{id}', 'Userscontroller@update');
+$router->delete('users/{id}', 'Userscontroller@destroy');
+ 
