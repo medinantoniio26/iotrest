@@ -18,20 +18,20 @@ $router->get('/', function () use ($router) {
     return "Hola Mundo";
 });
 
-$router->get('users', 'Userscontroller@index');
-$router->get('users/{id}', 'Userscontroller@show');
-$router->post('users', 'Userscontroller@store'); #insertar
-$router->put('users/{id}', 'Userscontroller@update');
-$router->delete('users/{id}', 'Userscontroller@destroy');
- 
-$router->get('sensors', 'Sensorscontroller@index');
-$router->get('sensors/{id}', 'Sensorscontroller@show');
-$router->post('sensors', 'Sensorscontroller@store'); #insertar
-$router->put('sensors/{id}', 'Sensorscontroller@update');
-$router->delete('sensors/{id}', 'Sensorscontroller@destroy');
+$router->post('login', 'AuthController@login');
 
-$router->get('actuators', 'Actuatorscontroller@index');
-$router->get('actuators/{id}', 'Actuatorscontroller@show');
-$router->post('actuators', 'Actuatorscontroller@store'); #insertar
-$router->put('actuators/{id}', 'Actuatorscontroller@update');
-$router->delete('actuators/{id}', 'Actuatorscontroller@destroy');
+ 
+
+function recurso($router, $url, $modelo){
+$router->get("$url", $modelo."Controller@index");
+$router->get("$url/{id}", $modelo."Controller@show");
+$router->post("$url", $modelo."Controller@store"); #insertar
+$router->put("$url/{id}", $modelo."Controller@update");
+$router->delete("$url/{id}", $modelo."Controller@destroy");
+}
+
+$router->group(['middleware' => 'auth'], function () use ($router){
+    recurso($router, 'users', 'Users');
+    recurso($router, 'sensors', 'Sensors');
+    recurso($router, 'actuators', 'Actuators');
+});
