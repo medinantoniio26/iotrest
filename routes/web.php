@@ -24,3 +24,14 @@ $router->post('users', 'Userscontroller@store'); #insertar
 $router->put('users/{id}', 'Userscontroller@update');
 $router->delete('users/{id}', 'Userscontroller@destroy');
  
+$router->get('sensors', 'Sensorscontroller@index');
+$router->get('sensors/{id}', 'Sensorscontroller@show');
+$router->post('sensors', 'Sensorscontroller@store'); #insertar
+$router->put('sensors/{id}', 'Sensorscontroller@update');
+$router->delete('sensors/{id}', 'Sensorscontroller@destroy');
+
+$router->get('actuators', 'Actuatorscontroller@index');
+$router->get('actuators/{id}', 'Actuatorscontroller@show');
+$router->post('actuators', 'Actuatorscontroller@store'); #insertar
+$router->put('actuators/{id}', 'Actuatorscontroller@update');
+$router->delete('actuators/{id}', 'Actuatorscontroller@destroy');
